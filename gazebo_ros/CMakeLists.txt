@@ -49,6 +49,18 @@ ament_target_dependencies(gazebo_ros_utils
 )
 ament_export_libraries(gazebo_ros_utils)
 
+add_library(gazebo_ros_clock SHARED
+  src/gazebo_ros_clock.cpp
+)
+target_link_libraries(gazebo_ros_clock
+  gazebo_ros_node
+)
+ament_target_dependencies(gazebo_ros_clock
+  "rclcpp"
+  "gazebo_dev"
+)
+ament_export_libraries(gazebo_ros_clock)
+
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(gazebo_dev)
@@ -69,6 +81,7 @@ install(
     gazebo_ros_node
     gazebo_ros_init
     gazebo_ros_utils
+    gazebo_ros_clock
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)
